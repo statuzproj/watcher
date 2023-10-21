@@ -49,7 +49,7 @@ dev:
     # Search for the container that runs this image
     imageSelector: timam/watcher
     # Replace the container image with this dev-optimized image (allows to skip image building during development)
-    devImage: ghcr.io/loft-sh/devspace-containers/go:1.18-alpine
+    devImage: ghcr.io/loft-sh/devspace-containers/go:1.20-alpine
     # Sync files between the local filesystem and the development container
     sync:
       - path: ./
@@ -81,9 +81,7 @@ commands:
       echo 'Anyone using this project can invoke it via "devspace run migrate-db"'
 
 # Define dependencies to other projects with a devspace.yaml
-# dependencies:
-#   api:
-#     git: https://...  # Git-based dependencies
-#     tag: v1.0.0
-#   ui:
-#     path: ./ui        # Path-based dependencies (for monorepos)
+dependencies:
+  genie:
+   git: https://github.com/statuzproj/genie
+   branch: main
