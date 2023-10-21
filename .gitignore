@@ -19,3 +19,11 @@
 
 # Go workspace file
 go.work
+
+
+# Ignore DevSpace cache and log folder
+.devspace/
+
+#IDE
+.idea
+.vscode
