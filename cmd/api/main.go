@@ -12,7 +12,7 @@ func main() {
 
 	resp, err := http.Get(`http://genie:8081`)
 	if err != nil {
-		panic(err)
+		log.Println("genie is not live")
 	}
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
