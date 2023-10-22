@@ -6,5 +6,5 @@ COPY . /watcher
 WORKDIR /watcher/cmd/api
 RUN go build -o /bin/watcher -ldflags '-w -s' -tags netgo -a -installsuffix cgo -v .
 
-EXPOSE 8080
+EXPOSE 8081
 CMD ["/bin/watcher"]
