@@ -29,6 +29,14 @@ deployments:
       values:
         containers:
           - image: watcher
+            env:
+              # TODO: remove dependency on env variables
+              - name: TYPE
+                value: webpage
+              - name: ENDPOINT
+                value: https://www.google.com
+              - name: INTERVAL
+                value: 15s
         service:
           ports:
             - port: 8081
@@ -39,9 +47,21 @@ deployments:
         repo: https://prometheus-community.github.io/helm-charts
       values:
         serverFiles:
+          rule_files:
+            - /etc/config/recording_rules.yml
+            - /etc/config/alerting_rules.yml
           prometheus.yml:
             scrape_configs:
-              - job_name: statuz
+              - job_name: prometheus
+                honor_timestamps: true
+                scrape_interval: 15s
+                scrape_timeout: 10s
+                metrics_path: /metrics
+                scheme: http
+                static_configs:
+                  - targets:
+                      - localhost:9090
+              - job_name: genie
                 honor_timestamps: true
                 scrape_interval: 15s
                 scrape_timeout: 10s
@@ -50,6 +70,14 @@ deployments:
                 static_configs:
                   - targets:
                       - genie:8080
+              - job_name: watcher
+                honor_timestamps: true
+                scrape_interval: 15s
+                scrape_timeout: 10s
+                metrics_path: /metrics
+                scheme: http
+                static_configs:
+                  - targets:
                       - watcher:8081
   grafana:
     helm:
@@ -88,7 +116,7 @@ dev:
       - port: "2345"
       - port: "8081"
     open:
-      - url: http://localhost:8080
+      - url: http://localhost:8081
     env:
       - name: TYPE
         value: webpage
