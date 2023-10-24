@@ -70,10 +70,13 @@ dev:
         value: 15s
 
 commands:
-  migrate-db:
+  watcher:
     command: |-
-      echo 'This is a cross-platform, shared command that can be used to codify any kind of dev task.'
-      echo 'Anyone using this project can invoke it via "devspace run migrate-db"'
+      cd cmd/api
+      export TYPE=webpage
+      export ENDPOINT=https://www.google.com
+      export INTERVAL=15s
+      go run .
 
 #dependencies:
 #  genie:
