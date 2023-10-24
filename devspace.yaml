@@ -69,14 +69,14 @@ dev:
       - name: INTERVAL
         value: 15s
 
-commands:
-  watcher:
-    command: |-
-      cd cmd/api
-      export TYPE=webpage
-      export ENDPOINT=https://www.google.com
-      export INTERVAL=15s
-      go run .
+#commands:
+#  watcher:
+#    command: |-
+#      cd cmd/api
+#      export TYPE=webpage
+#      export ENDPOINT=https://www.google.com
+#      export INTERVAL=15s
+#      go run .
 
 #dependencies:
 #  genie:
