@@ -43,7 +43,7 @@ deployments:
 
 dev:
   watcher:
-    imageSelector: watcher
+    imageSelector: watcher:${runtime.images.genie.tag}
     devImage: ghcr.io/loft-sh/devspace-containers/go:1.20-alpine
     sync:
       - path: ./
