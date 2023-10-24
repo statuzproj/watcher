@@ -40,62 +40,6 @@ deployments:
         service:
           ports:
             - port: 8081
-  prometheus:
-    helm:
-      chart:
-        name: prometheus
-        repo: https://prometheus-community.github.io/helm-charts
-      values:
-        serverFiles:
-          rule_files:
-            - /etc/config/recording_rules.yml
-            - /etc/config/alerting_rules.yml
-          prometheus.yml:
-            scrape_configs:
-              - job_name: prometheus
-                honor_timestamps: true
-                scrape_interval: 15s
-                scrape_timeout: 10s
-                metrics_path: /metrics
-                scheme: http
-                static_configs:
-                  - targets:
-                      - localhost:9090
-              - job_name: genie
-                honor_timestamps: true
-                scrape_interval: 15s
-                scrape_timeout: 10s
-                metrics_path: /metrics
-                scheme: http
-                static_configs:
-                  - targets:
-                      - genie:8080
-              - job_name: watcher
-                honor_timestamps: true
-                scrape_interval: 15s
-                scrape_timeout: 10s
-                metrics_path: /metrics
-                scheme: http
-                static_configs:
-                  - targets:
-                      - watcher:8081
-  grafana:
-    helm:
-      chart:
-        name: grafana
-        repo: https://grafana.github.io/helm-charts
-      values:
-        grafana.ini:
-          auth.anonymous:
-            enabled: true
-            org_role: Admin
-        datasources:
-          datasources.yaml:
-            apiVersion: 1
-            datasources:
-              - name: Prometheus
-                type: prometheus
-                url: http://prometheus-server:80
 
 dev:
   watcher:
@@ -131,7 +75,7 @@ commands:
       echo 'This is a cross-platform, shared command that can be used to codify any kind of dev task.'
       echo 'Anyone using this project can invoke it via "devspace run migrate-db"'
 
-dependencies:
-  genie:
-   git: https://github.com/statuzproj/genie
-   branch: main
+#dependencies:
+#  genie:
+#   git: https://github.com/statuzproj/genie
+#   branch: main
