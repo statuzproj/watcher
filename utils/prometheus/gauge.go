@@ -6,7 +6,7 @@ import (
 )
 
 func SetWebpagePrometheusMetric(name string, url string, status int64) {
-	metric := "statuz" + name
+	metric := "statuz_" + name
 	gauge := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Name: metric,
