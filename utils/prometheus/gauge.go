@@ -2,12 +2,11 @@ package prometheus
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/statuzproj/watcher/utils/evictedconf"
 	"net/http"
 )
 
-func SetWebpagePrometheusMetric(url string, status int64) {
-	metric := evictedconf.MetricName()
+func SetWebpagePrometheusMetric(name string, url string, status int64) {
+	metric := "statuz" + name
 	gauge := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Name: metric,

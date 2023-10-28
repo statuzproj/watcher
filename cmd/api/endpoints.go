@@ -12,6 +12,7 @@ type Endpoint struct {
 	Target struct {
 		Type     string `json:"Type"`
 		Endpoint string `json:"Endpoint"`
+		Interval string `json:"Interval"`
 		Method   string `json:"Method"`
 	} `json:"Target"`
 }
