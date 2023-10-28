@@ -29,21 +29,13 @@ deployments:
       values:
         containers:
           - image: watcher
-            env:
-              # TODO: remove dependency on env variables
-              - name: TYPE
-                value: webpage
-              - name: ENDPOINT
-                value: https://www.google.com
-              - name: INTERVAL
-                value: 15s
         service:
           ports:
             - port: 8081
 
 dev:
   watcher:
-    imageSelector: watcher:${runtime.images.genie.tag}
+    imageSelector: watcher:${runtime.images.watcher.tag}
     devImage: ghcr.io/loft-sh/devspace-containers/go:1.20-alpine
     sync:
       - path: ./
@@ -61,13 +53,6 @@ dev:
       - port: "8081"
     open:
       - url: http://localhost:8081
-    env:
-      - name: TYPE
-        value: webpage
-      - name: ENDPOINT
-        value: https://www.google.com
-      - name: INTERVAL
-        value: 15s
 
 #commands:
 #  watcher:
